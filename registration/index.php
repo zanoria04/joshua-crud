@@ -34,7 +34,7 @@
 
 
 <div class="header bg-dark">
-	<h2>Home Page</h2>
+	<h4>"Problem is an opportunity to improve."</h4>
 </div>
 <div class="content">
   
@@ -54,19 +54,10 @@
     <?php  if (isset($_SESSION['email'])) : ?>
     	<p>Welcome <strong><?php echo $_SESSION['email']; ?></strong></p>
 <br>
-<br>
     	<p> <a href="index.php?logout='1'" style="color: red;">logout</a> </p>
     <?php endif ?>
-
-
-
-
-   <!-- <button class="btn" ><a href="homepage.php">Contact Page</a></button> 
-
-    <button class="btn" ><a href="create_update.php">Create New Contact</a></button>-->
 </div>
 	
-
 
 
 </body>

@@ -3,6 +3,8 @@
 
 <?php  include ('php_code.php'); ?>
 
+<?php  include ('search.php'); ?>
+
 
 	
 
@@ -45,25 +47,12 @@
 </head>
 <body>
 
-<!--
-<form>
-<select name="contacts" onchange="showUser(this.value)">
-  <option value="">Select a person:</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">Joseph Swanson</option>
-  <option value="4">Glenn Quagmire</option>
-  </select>
-</form>
-<br> 
 
 
-<div id="txtHint"></div>-->
-
-
-
-
-
+<form class="form-inline my-2 my-lg-0" action="homepage.php" method="post" >
+            <input class="form-control mr-sm-2" type="text" placeholder="Search Contact" name="Search_Contact" style="width: 400px;" >
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit" name="search">Search</button>
+</form>          
 
 
 <?php if (isset($_SESSION['message'])): ?>
@@ -88,7 +77,7 @@
 		</tr>
 	</thead>
 	<tbody>
-	<?php while ($row = mysqli_fetch_array($results)) { ?>
+	<?php while ($row = mysqli_fetch_array($search_result)) { ?>
 		<tr>
 			<td><?php echo $row['name'];    ?></td>
 			<td><?php echo $row['company']; ?></td>
@@ -110,6 +99,35 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<form>
+<select name="contacts" onchange="showUser(this.value)">
+  <option value="">Select a person:</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">Joseph Swanson</option>
+  <option value="4">Glenn Quagmire</option>
+  </select>
+</form>
+<br> 
+
+
+<div id="txtHint"></div>-->
 
 
 
