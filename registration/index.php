@@ -29,7 +29,7 @@
 
 
 
-<?php include ('nav_bar.php'); ?>
+<?php require ('nav_bar.php'); ?>
 
 
 

@@ -8,6 +8,9 @@ $errors = array();
 // connect to the database
 $db = mysqli_connect('localhost', 'root', '', 'registration');
 
+
+
+
 // REGISTER USER
 if (isset($_POST['reg_user'])) {
 
@@ -16,6 +19,9 @@ if (isset($_POST['reg_user'])) {
   $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
   $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
 
+
+
+
   // form validation: to ensure that the form is correctly filled ...
   // by adding (array_push()) corresponding error unto $errors array
   if (empty($email)) { array_push($errors, "Email is required"); }
@@ -23,6 +29,9 @@ if (isset($_POST['reg_user'])) {
   if ($password_1 != $password_2) {
 	array_push($errors, "The two passwords do not match");
   }
+
+
+
 
   // checking the database to make sure 
   // a user does not already exist with the same email and/or password
@@ -37,6 +46,10 @@ if (isset($_POST['reg_user'])) {
     }
   }
 
+
+
+
+
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
   	$password = md5($password_1); //encrypt the password before saving in the database
@@ -50,7 +63,10 @@ if (isset($_POST['reg_user'])) {
   }
 }
 
-// ... 
+
+
+
+
 
 // LOGIN USER
 if (isset($_POST['login_user'])) {
@@ -65,7 +81,8 @@ if (isset($_POST['login_user'])) {
   }
 
   if (count($errors) == 0) {
-    $password = md5($password);
+    $password = md5($password); //encrypt the password before saving in the database
+    
     $query = "SELECT * FROM users WHERE email='$email' AND password='$password'";
     $results = mysqli_query($db, $query);
     if (mysqli_num_rows($results) == 1) {

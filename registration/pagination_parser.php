@@ -1,10 +1,50 @@
 
 <?php require ('nav_bar.php'); ?>
 
-<?php  include ('php_code.php'); ?>
+<?php
 
+// Make the script run only if there is a page number posted to this script
+if(isset($_POST['pn'])){
+	$rpp = preg_replace('#[^0-9]#', '', $_POST['rpp']);
+	$last = preg_replace('#[^0-9]#', '', $_POST['last']);
+    $pn = preg_replace('#[^0-9]#', '', $_POST['pn']);
+    
+	// This makes sure the page number isn't below 1, or more than our $last page
+	if ($pn < 1) { 
+    	$pn = 1; 
+	} else if ($pn > $last) { 
+    	$pn = $last; 
+    }
+    
+	// Connect to our database here
+    include_once("php_code.php");
+    
+	// This sets the range of rows to query for the chosen $pn
+    $limit = 'LIMIT ' .($pn - 1) * $rpp .',' .$rpp;
+    
+	// This is your query again, it is for grabbing just one page worth of rows by applying $limit
+	$sql = "SELECT name, company, contact, email FROM contacts ORDER BY id DESC $limit";
+	$query = mysqli_query($db, $sql);
+	$dataString = '';
+	while($row = mysqli_fetch_array($query, MYSQLI_ASSOC)){
+		$id = $row["id"];
+		$name = $row["name"];
+        $company = $row["company"];
+        $contact = $row["contact"];
+        $email = $row["email"];
 
-	
+		$dataString .= $id.'|'.$name.'|'.$compan.'|'.$itemdate.'||';
+    }
+    
+	// Close your database connection
+    mysqli_close($db);
+
+	// Echo the results back to Ajax
+	echo $dataString;
+	exit();
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,53 +57,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
-<script>
-/*function showUser(str) {
-    if (str == "") {
-        document.getElementById("txtHint").innerHTML = "";
-        return;
-    } else { 
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
-            }
-        };
-        xmlhttp.open("GET","show_contact.php?id="+str,true);
-        xmlhttp.send();
-    }
-}*/
-</script>
-
 </head>
 <body>
-
-<!--
-<form>
-<select name="contacts" onchange="showUser(this.value)">
-  <option value="">Select a person:</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">Joseph Swanson</option>
-  <option value="4">Glenn Quagmire</option>
-  </select>
-</form>
-<br> 
-
-
-<div id="txtHint"></div>-->
-
-
-
-
-
 
 
 <?php if (isset($_SESSION['message'])): ?>
@@ -98,7 +93,7 @@
 				<a href="create_update.php?edit=<?php echo $row['id']; ?>" class="edit_btn" >Edit</a>
 			</td>
 			<td>
-				<a onclick="return confirm('Are you sure? the contact will be deleted permanently.')" href="php_code.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
+				<a href="php_code.php?del=<?php echo $row['id']; ?>" class="del_btn">Delete</a>
 			</td>
 		</tr>
 	<?php } ?>
@@ -106,19 +101,9 @@
 
 </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
  
 </body>
 </html>
+
+
 

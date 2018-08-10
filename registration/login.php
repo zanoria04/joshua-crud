@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <div class="header">
+  <div class="header" >
   	<h2>Login</h2>
   </div>
 	 

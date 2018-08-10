@@ -1,4 +1,4 @@
-<?php include ('nav_bar.php'); ?>
+<?php require ('nav_bar.php'); ?>
 
 <?php  include ('php_code.php');
 
@@ -7,7 +7,7 @@
 	if (isset($_GET['edit'])) {
 		$id = $_GET['edit'];
 		$edit_state = true;
-		$rec = mysqli_query($db, "SELECT * FROM info WHERE id=$id");
+		$rec = mysqli_query($db, "SELECT * FROM contacts WHERE id=$id");
 	    $record = mysqli_fetch_array($rec);
 		$name = $record['name'];
 		$company = $record['company'];
