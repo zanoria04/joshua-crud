@@ -28,7 +28,7 @@
 			$query = "INSERT INTO contacts (name, company, contact, email) VALUES ('$name', '$company', '$contact', '$email')";
 			mysqli_query($db, $query);
 			$_SESSION['message'] = "Contact saved"; 
-			header('location: homepage.php');
+			header('location: contacts_ajax.php');
 		}
 
 

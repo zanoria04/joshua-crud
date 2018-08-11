@@ -54,7 +54,9 @@
     <?php  if (isset($_SESSION['email'])) : ?>
     	<p>Welcome <strong><?php echo $_SESSION['email']; ?></strong></p>
 <br>
-    	<p> <a href="index.php?logout='1'" style="color: red;">logout</a> </p>
+<button type="submit" class="btn" name="login_user" style="background: black;"><a href="index.php?logout='1'" style="color: red;">logout</a></button>
+
+    	<!-- <p> <a href="index.php?logout='1'" style="color: red;">logout</a> </p> -->
     <?php endif ?>
 </div>
 	

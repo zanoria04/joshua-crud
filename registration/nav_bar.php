@@ -24,11 +24,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="homepage.php">Contacts <span class="sr-only">(current)</span></a>
-      </li>
+        <a class="nav-link" href="contacts_ajax.php">Contacts Info <span class="sr-only">(current)</span></a>
+      </li> &nbsp &nbsp &nbsp &nbsp &nbsp 
       <li class="nav-item">
         <a class="nav-link" href="create_update.php">Create New Contact</a>
-      </li>
+      </li> &nbsp &nbsp &nbsp &nbsp &nbsp 
+      <li class="nav-item">
+        <a class="nav-link" href="homepage.php">EDIT &nbsp or &nbsp DELETE  &nbsp Contact</a>
 
     </ul>
   </div>

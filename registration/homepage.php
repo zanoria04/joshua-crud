@@ -65,7 +65,6 @@
 <?php endif ?>
 
 
-
 <table>
 	<thead>
 		<tr>
@@ -94,18 +93,6 @@
 	</tbody>
 
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
